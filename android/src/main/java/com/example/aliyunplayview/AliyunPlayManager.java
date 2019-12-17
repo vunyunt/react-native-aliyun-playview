@@ -70,6 +70,8 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
         mAliyunVodPlayer.setDisplay(holder);
         mAliyunVodPlayer.setVideoScalingMode(IAliyunVodPlayer.VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
 
+
+
         //增加surfaceView的监听
         holder.addCallback(new SurfaceHolder.Callback() {
             @Override
