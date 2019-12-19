@@ -6,7 +6,8 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import com.alivc.player.VcPlayerLog;
-import com.aliyun.player.source.UrlSource;
+import com.aliyun.vodplayer.media.AliyunLocalSource;
+import com.aliyun.vodplayer.media.AliyunVidSource;
 import com.aliyun.vodplayer.media.AliyunVidSts;
 import com.aliyun.vodplayer.media.AliyunVodPlayer;
 import com.aliyun.vodplayer.media.IAliyunVodPlayer;
@@ -126,11 +127,11 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
             case "url":
                 String url = options.getString("url");
 
-                UrlSource urlSource = new UrlSource();
-                urlSource.setUri(url);
+                AliyunLocalSource.AliyunLocalSourceBuilder asb = new AliyunLocalSource.AliyunLocalSourceBuilder();
+                asb.setSource(url);
 
                 if(mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.prepareAsync(urlSource);
+                    mAliyunVodPlayer.prepareAsync(asb.build());
                 }
                 break;
             default:
