@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9eb3219-4eeb-4ed4-aa6c-f4f11e1336f9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.8/fileHashes/fileHashes.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android.iml" afterDir="false" />
     </list>
@@ -35,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunPlayManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="136" column="20" selection-start-line="136" selection-start-column="20" selection-end-line="137" selection-end-column="50" />
+            <state relative-caret-position="435">
+              <caret line="133" selection-start-line="133" selection-end-line="133" />
             </state>
           </provider>
         </entry>
@@ -68,8 +71,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="331" />
-    <option name="y" value="98" />
+    <option name="x" value="241" />
+    <option name="y" value="162" />
     <option name="width" value="1218" />
     <option name="height" value="774" />
   </component>
@@ -79,9 +82,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,6 +140,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -181,11 +184,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="331" y="98" width="1218" height="774" extended-state="0" />
+    <frame x="241" y="162" width="1218" height="774" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49690402" visible="true" weight="0.3327645" />
-      <window_info id="Structure" order="2" sideWeight="0.503096" side_tool="true" visible="true" weight="0.3327645" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.48909658" visible="true" weight="0.36082473" />
+      <window_info id="Structure" order="2" sideWeight="0.5109034" side_tool="true" visible="true" weight="0.36082473" />
       <window_info id="Build Variants" order="3" sideWeight="0.50162864" side_tool="true" weight="0.20384204" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Designer" order="5" />
@@ -199,7 +203,7 @@
       <window_info active="true" anchor="bottom" id="Build" order="4" visible="true" weight="0.32969433" />
       <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info anchor="right" id="Gradle" order="1" visible="true" weight="0.3250853" />
+      <window_info active="true" anchor="right" id="Gradle" order="1" visible="true" weight="0.32474226" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="right" id="Assistant" order="4" weight="0.32977587" />
@@ -208,8 +212,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunPlayManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="136" column="20" selection-start-line="136" selection-start-column="20" selection-end-line="137" selection-end-column="50" />
+        <state relative-caret-position="435">
+          <caret line="133" selection-start-line="133" selection-end-line="133" />
         </state>
       </provider>
     </entry>
@@ -220,6 +224,9 @@
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="gradleExecuteTaskHistory">
+    <option value="" />
   </component>
   <component name="masterDetails">
     <states>
