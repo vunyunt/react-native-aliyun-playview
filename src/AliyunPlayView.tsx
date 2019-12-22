@@ -14,28 +14,26 @@ import {
 //@ts-ignore
 const AliyunPlayer = requireNativeComponent("AliyunPlay", AliyunPlayView);
 
-export enum AliYunVideoEventType {
-  AliyunVodPlayerEventPrepareDone,
-  AliyunVodPlayerEventPlay,
-  AliyunVodPlayerEventFirstFrame,
-  AliyunVodPlayerEventPause,
-  AliyunVodPlayerEventStop,
-  AliyunVodPlayerEventFinish,
-  AliyunVodPlayerEventBeginLoading,
-  AliyunVodPlayerEventEndLoading,
-  AliyunVodPlayerEventSeekDone
+export enum EAliYunVideoEventType {
+  AliyunVodPlayerEventPrepareDone = 0,
+  AliyunVodPlayerEventPlay = 1,
+  AliyunVodPlayerEventFirstFrame = 2,
+  AliyunVodPlayerEventPause = 3,
+  AliyunVodPlayerEventStop = 4,
+  AliyunVodPlayerEventFinish = 5,
+  AliyunVodPlayerEventBeginLoading = 6,
+  AliyunVodPlayerEventEndLoading = 7,
+  AliyunVodPlayerEventSeekDone = 8
 }
 
-interface IEvent {
-  nativeEvent: {
-    event: string;
-  };
+export interface IAliyunVideoEvent {
+  nativeEvent: EAliYunVideoEventType;
 }
 
 interface Props {
   style: any;
   prepareAsyncParams: any;
-  onEventCallback?: (e: IEvent) => any;
+  onEventCallback?: (e: IAliyunVideoEvent) => any;
   onPlayingCallback?: any;
 }
 
