@@ -27,7 +27,14 @@ export enum EAliYunVideoEventType {
 }
 
 export interface IAliyunVideoEvent {
-  nativeEvent: EAliYunVideoEventType;
+  nativeEvent: { event: EAliYunVideoEventType };
+}
+
+export interface IAliyunPlayingEvent {
+  nativeEvent: {
+    currentTime: number;
+    duration: number;
+  };
 }
 
 interface Props {
