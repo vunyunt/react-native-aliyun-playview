@@ -60,6 +60,10 @@
     NSString *accessKeySecret = [_prepareAsyncParams objectForKey:@"accessKeySecret"];
     NSString *securityToken = [_prepareAsyncParams objectForKey:@"securityToken"];
     [self.aliPlayer prepareWithVid:vid accessKeyId:accessKeyId accessKeySecret:accessKeySecret securityToken:securityToken];
+  } else if ([type isEqualToString:@"url"]) {
+      NSString *urlStr = [_prepareAsyncParams objectForKey:@"url"];
+      NSURL *url = [NSURL URLWithString:urlStr];
+      [self.aliPlayer prepareWithURL:url];
   }
 }
 
