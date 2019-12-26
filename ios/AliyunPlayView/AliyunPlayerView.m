@@ -82,7 +82,7 @@
     _aliPlayer.quality= 0;
     _aliPlayer.circlePlay = YES;
     _aliPlayer.autoPlay = NO;
-    [_aliPlayer setDisplayMode: AliyunVodPlayerDisplayModeFitWithCropping];
+    [_aliPlayer setDisplayMode: AliyunVodPlayerDisplayModeFit];
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [pathArray objectAtIndex:0];
     //maxsize: MB, maxDuration: second

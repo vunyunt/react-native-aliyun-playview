@@ -70,7 +70,7 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
 
         mAliyunVodPlayer = new AliyunVodPlayer(context);
         mAliyunVodPlayer.setDisplay(holder);
-        mAliyunVodPlayer.setVideoScalingMode(IAliyunVodPlayer.VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
+        mAliyunVodPlayer.setVideoScalingMode(IAliyunVodPlayer.VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT);
 
 
 
@@ -121,7 +121,6 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
                 mVidSts.setSecurityToken(securityToken);
 
                 if (mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.setVideoScalingMode(IAliyunVodPlayer.VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT);
                     mAliyunVodPlayer.prepareAsync(mVidSts);
                 }
                 break;
@@ -132,7 +131,6 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
                 asb.setSource(url);
 
                 if(mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.setVideoScalingMode(IAliyunVodPlayer.VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT);
                     mAliyunVodPlayer.prepareAsync(asb.build());
                 }
                 break;
