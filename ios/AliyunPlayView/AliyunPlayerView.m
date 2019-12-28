@@ -230,8 +230,8 @@
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
       if (selfWeak.aliPlayer) {
         NSDictionary *callbackExt = @{
-                               @"currentTime": @(selfWeak.aliPlayer.currentTime),
-                               @"duration": @(selfWeak.aliPlayer.duration)
+                               @"currentTime": @(selfWeak.aliPlayer.currentTime) * 1000,
+                               @"duration": @(selfWeak.aliPlayer.duration) * 1000
                                };
         if (selfWeak.onPlayingCallback) {
           selfWeak.onPlayingCallback(callbackExt);
