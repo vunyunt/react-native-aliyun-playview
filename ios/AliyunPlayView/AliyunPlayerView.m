@@ -227,11 +227,14 @@
 - (void)setupTimer {
   if (!_timer) {
     WeakObj(self)
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+      _timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+          float currentTime =[@(selfWeak.aliPlayer.currentTime) floatValue] * 1000;
+          float duration =[@(selfWeak.aliPlayer.duration) floatValue] * 1000;
+        
       if (selfWeak.aliPlayer) {
         NSDictionary *callbackExt = @{
-                               @"currentTime": @(selfWeak.aliPlayer.currentTime) * 1000,
-                               @"duration": @(selfWeak.aliPlayer.duration) * 1000
+                               @"currentTime": [NSNumber numberWithFloat:(currentTime)],
+                               @"duration": [NSNumber numberWithFloat:(duration)]
                                };
         if (selfWeak.onPlayingCallback) {
           selfWeak.onPlayingCallback(callbackExt);
