@@ -7,6 +7,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import com.alivc.player.VcPlayerLog;
 import com.aliyun.vodplayer.media.AliyunLocalSource;
+import com.aliyun.vodplayer.media.AliyunPlayAuth;
 import com.aliyun.vodplayer.media.AliyunVidSource;
 import com.aliyun.vodplayer.media.AliyunVidSts;
 import com.aliyun.vodplayer.media.AliyunVodPlayer;
@@ -135,10 +136,16 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
                 }
                 break;
             case "vidAuth":
-                String vid = options.getString("vid");
-                String playAuth = options.getString("playAuth");
+                String playAuthVid = options.getString("vid");
+                String playAuthStr = options.getString("playAuth");
 
+                AliyunPlayAuth.AliyunPlayAuthBuilder playAuthBuilder = new AliyunPlayAuth.AliyunPlayAuthBuilder();
+                playAuthBuilder.setPlayAuth(playAuthStr);
+                playAuthBuilder.setVid(playAuthVid);
 
+                if(mAliyunVodPlayer != null) {
+                    mAliyunVodPlayer.prepareAsync(playAuthBuilder.build());
+                }
                 break;
             default:
                 Log.e(TAG, "prepareAsync" + type);
