@@ -13,6 +13,13 @@ export interface IAliyunDownloadMediaInfo {
   quality: string;
   vid: string;
 }
+export interface IAliyunMediaInfoList {
+  ["@items"]: IAliyunDownloadMediaInfo;
+}
+export interface IAliyunDownloadProgress {
+  progress: number;
+  media: IAliyunMediaInfoList;
+}
 
 export class AliyunVodDownloader {
   public static EVENT_UPDATE_AUTH = "AliyunVod.Downloader.UpdateAuth";
@@ -47,26 +54,15 @@ export class AliyunVodDownloader {
     DownloaderModule.setAuth(vidId, authStr);
   }
 
-  public onStart(
-    handler: (args: { ["@items"]: IAliyunDownloadMediaInfo[] }) => void
-  ) {
+  public onStart(handler: (args: IAliyunMediaInfoList) => void) {
     DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_START, handler);
   }
 
-  public onProgress(
-    handler: (args: {
-      progress: number;
-      media: {
-        ["@items"]: IAliyunDownloadMediaInfo[];
-      };
-    }) => void
-  ) {
+  public onProgress(handler: (args: IAliyunDownloadProgress) => void) {
     DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_PROGRESS, handler);
   }
 
-  public onComplete(
-    handler: (args: { ["@items"]: IAliyunDownloadMediaInfo[] }) => void
-  ) {
+  public onComplete(handler: (args: IAliyunMediaInfoList) => void) {
     DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_COMPLETE, handler);
   }
 
