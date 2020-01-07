@@ -47,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunPlayManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1934">
-              <caret line="141" column="38" lean-forward="true" selection-start-line="141" selection-start-column="38" selection-end-line="141" selection-end-column="38" />
+              <caret line="141" column="38" selection-start-line="141" selection-start-column="38" selection-end-line="141" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,15 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodDownloadModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="196" column="48" lean-forward="true" selection-start-line="196" selection-start-column="48" selection-end-line="196" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#428#429#0" expanded="true" />
-                <element signature="e#452#453#0" expanded="true" />
-                <element signature="e#1894#2713#0" expanded="true" />
-                <element signature="e#2712#2713#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="392">
+              <caret line="127" column="58" lean-forward="true" selection-start-line="127" selection-start-column="58" selection-end-line="127" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -75,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/RNAliyunPlayerPackage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="22" column="61" lean-forward="true" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
+              <caret line="22" column="61" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -304,7 +297,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunPlayManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1934">
-          <caret line="141" column="38" lean-forward="true" selection-start-line="141" selection-start-column="38" selection-end-line="141" selection-end-column="38" />
+          <caret line="141" column="38" selection-start-line="141" selection-start-column="38" selection-end-line="141" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -314,7 +307,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/RNAliyunPlayerPackage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="22" column="61" lean-forward="true" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
+          <caret line="22" column="61" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -327,15 +320,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodDownloadModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="196" column="48" lean-forward="true" selection-start-line="196" selection-start-column="48" selection-end-line="196" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#428#429#0" expanded="true" />
-            <element signature="e#452#453#0" expanded="true" />
-            <element signature="e#1894#2713#0" expanded="true" />
-            <element signature="e#2712#2713#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="392">
+          <caret line="127" column="58" lean-forward="true" selection-start-line="127" selection-start-column="58" selection-end-line="127" selection-end-column="58" />
         </state>
       </provider>
     </entry>

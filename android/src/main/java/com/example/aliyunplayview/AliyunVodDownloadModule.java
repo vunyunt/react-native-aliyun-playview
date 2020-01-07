@@ -1,5 +1,7 @@
 package com.example.aliyunplayview;
 
+import android.util.Log;
+
 import com.aliyun.vodplayer.downloader.AliyunDownloadConfig;
 import com.aliyun.vodplayer.downloader.AliyunDownloadInfoListener;
 import com.aliyun.vodplayer.downloader.AliyunDownloadManager;
@@ -19,6 +21,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -28,6 +31,7 @@ public class AliyunVodDownloadModule extends ReactContextBaseJavaModule {
     private ReactApplicationContext mContext;
     private AliyunDownloadManager mDownloadManager;
     private Lock mAuthInfoLock = new ReentrantLock();
+    private Condition mAuthInfoCond = mAuthInfoLock.newCondition();
     private boolean mAuthInfoSet = false;
     private String mAuthInfoVidId = "";
     private String mAuthInfoAuthStr = "";
@@ -79,13 +83,16 @@ public class AliyunVodDownloadModule extends ReactContextBaseJavaModule {
 
                 mDeviceEmitter.emit(EVENT_UPDATE_AUTH, args);
 
+                mAuthInfoLock.lock();
                 try {
                     while(!mAuthInfoSet) {
-                        mAuthInfoLock.wait();
+                        mAuthInfoCond.await();
                     }
                 } catch (InterruptedException e) {
+                    Log.e("ReactNative", "refreshPlayAuth: Interrupted" );
                     mAuthInfoSet = false;
                 }
+                mAuthInfoLock.unlock();
 
                 AliyunPlayAuth.AliyunPlayAuthBuilder playAuthBuilder = new AliyunPlayAuth.AliyunPlayAuthBuilder();
                 playAuthBuilder.setVid(mAuthInfoVidId);
@@ -109,6 +116,7 @@ public class AliyunVodDownloadModule extends ReactContextBaseJavaModule {
 
             @Override
             public void onStart(AliyunDownloadMediaInfo aliyunDownloadMediaInfo) {
+                Log.d("ReactNative", "onStart: ");
                 mDeviceEmitter.emit(EVENT_START, mediaInfosToWritableMap(aliyunDownloadMediaInfo));
             }
 
@@ -173,6 +181,7 @@ public class AliyunVodDownloadModule extends ReactContextBaseJavaModule {
         this.mAuthInfoVidId = vidId;
         this.mAuthInfoAuthStr = authStr;
         this.mAuthInfoSet = true;
+        this.mAuthInfoCond.signalAll();
         this.mAuthInfoLock.unlock();
     }
 
