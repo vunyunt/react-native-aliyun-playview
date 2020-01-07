@@ -15,7 +15,8 @@ public class RNAliyunPlayerPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Arrays.<NativeModule>asList(new RNAliyunPlayerModule(reactContext),
-                new AliyunRecordModule(reactContext));
+                new AliyunRecordModule(reactContext),
+                new AliyunVodDownloadModule(reactContext));
     }
 
     // Deprecated from RN 0.47

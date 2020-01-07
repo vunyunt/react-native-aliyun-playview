@@ -134,6 +134,12 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
                     mAliyunVodPlayer.prepareAsync(asb.build());
                 }
                 break;
+            case "vidAuth":
+                String vid = options.getString("vid");
+                String playAuth = options.getString("playAuth");
+
+
+                break;
             default:
                 Log.e(TAG, "prepareAsync" + type);
                 break;

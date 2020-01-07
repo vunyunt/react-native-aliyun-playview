@@ -1,0 +1,62 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.aliyunplayview.test" >
+4
+5    <uses-sdk
+5-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:5:5-74
+6        android:minSdkVersion="16"
+6-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:5:15-41
+7        android:targetSdkVersion="28" />
+7-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:5:42-71
+8
+9    <instrumentation
+9-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:11:5-15:81
+10        android:name="android.support.test.runner.AndroidJUnitRunner"
+10-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:11:22-83
+11        android:functionalTest="false"
+11-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:14:22-52
+12        android:handleProfiling="false"
+12-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:13:22-53
+13        android:label="Tests for com.example.aliyunplayview.test"
+13-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:15:22-79
+14        android:targetPackage="com.example.aliyunplayview.test" />
+14-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:12:22-77
+15
+16    <uses-permission android:name="android.permission.INTERNET" />
+16-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:11:5-67
+16-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:11:22-64
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:12:5-79
+17-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:12:22-76
+18    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+18-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:13:5-76
+18-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:13:22-73
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+19-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:14:5-81
+19-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:14:22-78
+20    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+20-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:15:5-76
+20-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:15:22-73
+21    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+22    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+22-->[com.facebook.react:react-native:0.20.1] /home/vun/.gradle/caches/transforms-2/files-2.1/cedecdb632683d6da9558bff41d76d11/react-native-0.20.1/AndroidManifest.xml:11:5-78
+22-->[com.facebook.react:react-native:0.20.1] /home/vun/.gradle/caches/transforms-2/files-2.1/cedecdb632683d6da9558bff41d76d11/react-native-0.20.1/AndroidManifest.xml:11:22-75
+23    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+24    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+24-->[:AlivcPlayer-3.4.6:] /home/vun/.gradle/caches/transforms-2/files-2.1/dd20e84808ede0cef1ddb53cb92af190/AlivcPlayer-3.4.6/AndroidManifest.xml:12:5-73
+24-->[:AlivcPlayer-3.4.6:] /home/vun/.gradle/caches/transforms-2/files-2.1/dd20e84808ede0cef1ddb53cb92af190/AlivcPlayer-3.4.6/AndroidManifest.xml:12:22-70
+25
+26    <application
+26-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:7:5-9:19
+27        android:allowBackup="true"
+27-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:18:9-35
+28        android:debuggable="true"
+28-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:7:18-43
+29        android:label="@string/app_name" >
+29-->[com.aliyun.dpa:oss-android-sdk:2.9.3] /home/vun/.gradle/caches/transforms-2/files-2.1/b334d7921d175a6ed4cbee5c4a726b40/oss-android-sdk-2.9.3/AndroidManifest.xml:19:9-41
+30        <uses-library android:name="android.test.runner" />
+30-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:8:9-60
+30-->/home/vun/workspace/jx/react-native-aliyun-playview/android/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2469996105501342140.xml:8:23-57
+31    </application>
+32
+33</manifest>

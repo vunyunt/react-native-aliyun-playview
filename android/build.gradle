@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://maven.aliyun.com/repository/releases' }
+        flatDir { dirs 'libs' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.2'
+    }
+}
+
+
 apply plugin: 'com.android.library'
 
 android {
@@ -23,7 +36,8 @@ android {
 
 }
 repositories {
-    mavenCentral()
+    jcenter()
+    google()
     maven { url 'https://maven.aliyun.com/repository/releases' }
     flatDir { dirs 'libs' }
 }
@@ -40,6 +54,7 @@ dependencies {
     implementation(name: 'AliyunVodPlayer-3.4.6', ext: 'aar')
     implementation files('libs/vod-upload-android-sdk-1.5.0.jar')
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "com.facebook.react:react-native:+"
+    implementation 'com.cedarsoftware:json-io:4.12.0'// From node_modules
 
 }
