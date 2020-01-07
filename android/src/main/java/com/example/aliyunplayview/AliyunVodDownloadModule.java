@@ -58,6 +58,7 @@ public class AliyunVodDownloadModule extends ReactContextBaseJavaModule {
 
         AliyunDownloadConfig config = new AliyunDownloadConfig();
         config.setDownloadDir(mStoragePath);
+        config.setSecretImagePath("");
         this.mDownloadManager.setDownloadConfig(config);
 
         mDeviceEmitter = mContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class);
