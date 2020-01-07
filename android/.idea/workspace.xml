@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9eb3219-4eeb-4ed4-aa6c-f4f11e1336f9" name="Default Changelist" comment="" />
+    <list default="true" id="e9eb3219-4eeb-4ed4-aa6c-f4f11e1336f9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodDownloadModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodDownloadModule.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodDownloadModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="77" column="52" lean-forward="true" selection-start-line="77" selection-start-column="52" selection-end-line="77" selection-end-column="52" />
+            <state relative-caret-position="407">
+              <caret line="193" column="37" selection-start-line="193" selection-start-column="37" selection-end-line="193" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#428#429#0" expanded="true" />
@@ -318,8 +320,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodDownloadModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="77" column="52" lean-forward="true" selection-start-line="77" selection-start-column="52" selection-end-line="77" selection-end-column="52" />
+        <state relative-caret-position="407">
+          <caret line="193" column="37" selection-start-line="193" selection-start-column="37" selection-end-line="193" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#428#429#0" expanded="true" />

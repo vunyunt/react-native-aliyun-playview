@@ -191,6 +191,7 @@ public class AliyunVodDownloadModule extends ReactContextBaseJavaModule {
         info.setFormat(format);
         info.setQuality(quality);
         info.setEncripted(encrypted? 1:0);
+        info.setSavePath(mStoragePath);
 
         mDownloadManager.prepareDownloadMedia(playAuth);
         mDownloadManager.startDownloadMedia(info);
