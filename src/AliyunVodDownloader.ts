@@ -14,7 +14,7 @@ export interface IAliyunDownloadMediaInfo {
   vid: string;
 }
 export interface IAliyunMediaInfoList {
-  ["@items"]: IAliyunDownloadMediaInfo;
+  ["@items"]: IAliyunDownloadMediaInfo[];
 }
 export interface IAliyunDownloadProgress {
   progress: number;
