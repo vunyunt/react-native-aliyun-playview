@@ -1,6 +1,6 @@
 import { NativeModules, DeviceEventEmitter } from "react-native";
 
-const DownloaderModule = NativeModules["AliyunVodDownloadModule"];
+const DownloaderModule = NativeModules.AliyunVodDownloadModule;
 
 export type TAliyunVodQuality = "OD" | string;
 export type TAliyunVodFormat = "flv" | "mp4";

@@ -42,4 +42,5 @@ export default class AliyunPlayView extends Component {
         return <AliyunPlayer {...this.props}/>;
     }
 }
+export * from "./AliyunVodDownloader";
 //# sourceMappingURL=AliyunPlayView.js.map

@@ -1,5 +1,5 @@
 import { NativeModules, DeviceEventEmitter } from "react-native";
-const DownloaderModule = NativeModules["AliyunVodDownloadModule"];
+const DownloaderModule = NativeModules.AliyunVodDownloadModule;
 export class AliyunVodDownloader {
     constructor() {
         this.initialized = false;
