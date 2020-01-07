@@ -124,7 +124,7 @@ public class AliyunVodDownloadModule extends ReactContextBaseJavaModule {
             public void onProgress(AliyunDownloadMediaInfo aliyunDownloadMediaInfo, int progress) {
                 WritableMap args = Arguments.createMap();
                 args.putMap("media", mediaInfosToWritableMap(aliyunDownloadMediaInfo));
-                args.putInt("progress", progress);
+                args.putDouble("progress", ((float) progress) / 100);
                 mDeviceEmitter.emit(EVENT_PROGRESS, args);
             }
 
