@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9eb3219-4eeb-4ed4-aa6c-f4f11e1336f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodDownloadModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodDownloadModule.java" afterDir="false" />
-    </list>
+    <list default="true" id="e9eb3219-4eeb-4ed4-aa6c-f4f11e1336f9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +104,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="2">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-4" />
     <option name="width" value="1928" />
     <option name="height" value="1044" />
@@ -228,12 +226,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="0" width="1928" height="1044" extended-state="2" />
+    <frame x="-4" y="0" width="1928" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.47875816" visible="true" weight="0.24546425" />
-      <window_info id="Structure" order="2" sideWeight="0.52124184" side_tool="true" visible="true" weight="0.24546425" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4788961" visible="true" weight="0.24546425" />
+      <window_info id="Structure" order="2" sideWeight="0.5211039" side_tool="true" visible="true" weight="0.24546425" />
       <window_info id="Build Variants" order="3" sideWeight="0.50162864" side_tool="true" weight="0.20384204" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Designer" order="5" />
@@ -246,7 +244,7 @@
       <window_info anchor="bottom" id="TODO" order="1" weight="0.32969433" />
       <window_info anchor="bottom" id="Terminal" order="2" weight="0.32969433" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" weight="0.32969433" />
-      <window_info anchor="bottom" id="Build" order="4" visible="true" weight="0.32894737" />
+      <window_info anchor="bottom" id="Build" order="4" visible="true" weight="0.32751092" />
       <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="right" id="Device File Explorer" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="0" />

@@ -68,7 +68,7 @@ export class AliyunVodDownloader {
 
   public onError(
     handler: (args: {
-      media: string;
+      media: IAliyunMediaInfoList;
       i: number;
       s1: string;
       s2: string;
