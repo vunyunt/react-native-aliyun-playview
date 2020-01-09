@@ -2,7 +2,8 @@ import { NativeModules, DeviceEventEmitter } from "react-native";
 
 const DownloaderModule = NativeModules.AliyunVodDownloadModule;
 
-export type TAliyunVodQuality = "OD" | string;
+// SD is actually 720p, HD is 1080p,
+export type TAliyunVodQuality = "OD" | "SD" | "HD" | string;
 export type TAliyunVodFormat = "flv" | "mp4";
 export interface IAliyunDownloadMediaInfo {
   status: string;

@@ -147,15 +147,6 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
                     mAliyunVodPlayer.prepareAsync(playAuthBuilder.build());
                 }
                 break;
-            case "local":
-                AliyunLocalSource.AliyunLocalSourceBuilder localSourceBuilder = new AliyunLocalSource.AliyunLocalSourceBuilder();
-                String path = options.getString("path");
-                localSourceBuilder.setSource(path);
-
-                if(mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.prepareAsync(localSourceBuilder.build());
-                }
-                break;
             default:
                 Log.e(TAG, "prepareAsync" + type);
                 break;
@@ -209,6 +200,7 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
         mAliyunVodPlayer.setOnErrorListener(new IAliyunVodPlayer.OnErrorListener() {
             @Override
             public void onError(int errorCode, int errorEvent, String errorMsg) {
+                android.util.Log.d("ReactNative", "onError: " + errorMsg);
                 Log.e(TAG, "onError" + errorMsg);
                 // 停止定时器
                 stopProgressUpdateTimer();
