@@ -147,6 +147,15 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
                     mAliyunVodPlayer.prepareAsync(playAuthBuilder.build());
                 }
                 break;
+            case "local":
+                AliyunLocalSource.AliyunLocalSourceBuilder localSourceBuilder = new AliyunLocalSource.AliyunLocalSourceBuilder();
+                String path = options.getString("path");
+                localSourceBuilder.setSource(path);
+
+                if(mAliyunVodPlayer != null) {
+                    mAliyunVodPlayer.prepareAsync(localSourceBuilder.build());
+                }
+                break;
             default:
                 Log.e(TAG, "prepareAsync" + type);
                 break;
