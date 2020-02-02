@@ -10,6 +10,7 @@
 		741278C022CAFAB900E47CDE /* AliyunRecordModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 741278BA22CAFAB900E47CDE /* AliyunRecordModule.m */; };
 		741278C122CAFAB900E47CDE /* AliyunPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 741278BD22CAFAB900E47CDE /* AliyunPlayerView.m */; };
 		741278C222CAFAB900E47CDE /* AliyunPlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 741278BE22CAFAB900E47CDE /* AliyunPlayManager.m */; };
+		A3461C9223C9E9E100F34617 /* AliyunVodDownloadModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A3461C9123C9E9E100F34617 /* AliyunVodDownloadModule.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +33,9 @@
 		741278BD22CAFAB900E47CDE /* AliyunPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliyunPlayerView.m; sourceTree = "<group>"; };
 		741278BE22CAFAB900E47CDE /* AliyunPlayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliyunPlayManager.m; sourceTree = "<group>"; };
 		741278BF22CAFAB900E47CDE /* AliyunRecordModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunRecordModule.h; sourceTree = "<group>"; };
+		A3027E2523DB223400610C23 /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3461C9123C9E9E100F34617 /* AliyunVodDownloadModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunVodDownloadModule.m; sourceTree = "<group>"; };
+		A3461C9323C9E9F700F34617 /* AliyunVodDownloadModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunVodDownloadModule.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 			children = (
 				741278BB22CAFAB900E47CDE /* AliyunPlayerView.h */,
 				741278BD22CAFAB900E47CDE /* AliyunPlayerView.m */,
+				A3461C9123C9E9E100F34617 /* AliyunVodDownloadModule.m */,
+				A3461C9323C9E9F700F34617 /* AliyunVodDownloadModule.h */,
 				741278BC22CAFAB900E47CDE /* AliyunPlayManager.h */,
 				741278BE22CAFAB900E47CDE /* AliyunPlayManager.m */,
 				741278BF22CAFAB900E47CDE /* AliyunRecordModule.h */,
@@ -78,6 +84,7 @@
 		741278C322CAFC5300E47CDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3027E2523DB223400610C23 /* libReact-Core.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				741278C022CAFAB900E47CDE /* AliyunRecordModule.m in Sources */,
+				A3461C9223C9E9E100F34617 /* AliyunVodDownloadModule.m in Sources */,
 				741278C222CAFAB900E47CDE /* AliyunPlayManager.m in Sources */,
 				741278C122CAFAB900E47CDE /* AliyunPlayerView.m in Sources */,
 			);
