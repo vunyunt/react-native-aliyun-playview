@@ -8,10 +8,11 @@
 #import <UIKit/UIKit.h>
 #import <React/RCTComponent.h>
 #import <AliyunVodPlayerSDK/AliyunVodPlayerSDK.h>
+#import <AliyunPlayer/AliyunPlayer.h>
 
-@interface AliyunPlayerView : UIView <AliyunVodPlayerDelegate>
+@interface AliyunPlayerView : UIView <AVPDelegate>
 
-@property (nonatomic, strong) AliyunVodPlayer *aliPlayer;
+@property (nonatomic, strong) AliPlayer *aliPlayer;
 @property (nonatomic, copy) RCTBubblingEventBlock onEventCallback;
 @property (nonatomic, copy) RCTBubblingEventBlock onGetAliyunMediaInfo;
 @property (nonatomic, copy) RCTBubblingEventBlock onPlayingCallback;

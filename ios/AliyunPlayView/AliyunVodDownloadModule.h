@@ -9,10 +9,14 @@
 #ifndef AliyunVodDownloadModule_h
 #define AliyunVodDownloadModule_h
 
+#import <React/RCTEventEmitter.h>
 #import <React/RCTBridgeModule.h>
-#import <AliyunPlayerSDK/AliyunVodPlayerSDK.h>
+#import <AliyunVodPlayerSDK/AliyunVodPlayerSDK.h>
+#import <AliyunPlayer/AliyunPlayer.h>
+#import <AliyunMediaDownloader/AliyunMediaDownloader.h>
 
-@interface AliyunVodDownloadModule : NSObject <RCTBridgeModule>
+@interface AliyunVodDownloadModule : RCTEventEmitter <RCTBridgeModule, AMDDelegate>
+
 @end
 
 #endif /* AliyunVodDownloadModule_h */

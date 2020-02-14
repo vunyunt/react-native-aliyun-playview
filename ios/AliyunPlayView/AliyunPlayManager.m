@@ -58,7 +58,10 @@ RCT_EXPORT_METHOD(rePlay :(nonnull NSNumber *)reactTag) {
   NSLog(@"重置播放器");
   [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
     AliyunPlayerView *playerView = (AliyunPlayerView *) viewRegistry[reactTag];
-    [self.playerView.aliPlayer replay];
+//    [self.playerView.aliPlayer stop];
+//      [self.playerView.aliPlayer reset];
+      [self.playerView.aliPlayer start];
+      
   }];
 }
 
@@ -66,7 +69,7 @@ RCT_EXPORT_METHOD(resume :(nonnull NSNumber *)reactTag) {
   
   [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
     AliyunPlayerView *playerView = (AliyunPlayerView *) viewRegistry[reactTag];
-    [self.playerView.aliPlayer resume];
+    [self.playerView.aliPlayer start];
   }];
 }
 
@@ -81,8 +84,10 @@ RCT_EXPORT_METHOD(pause :(nonnull NSNumber *)reactTag) {
 RCT_EXPORT_METHOD(stop :(nonnull NSNumber *)reactTag) {
   [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
     AliyunPlayerView *playerView = (AliyunPlayerView *) viewRegistry[reactTag];
-    [self.playerView.aliPlayer stop];
-    [self.playerView.aliPlayer releasePlayer];
+      
+    [self.playerView.aliPlayer pause];
+      [self.playerView.aliPlayer seekToTime:0 seekMode:AVP_SEEKMODE_INACCURATE];
+//    [self.playerView.aliPlayer releasePlayer];
   }];
 }
 
@@ -90,7 +95,7 @@ RCT_EXPORT_METHOD(seekToTime :(nonnull NSNumber *)reactTag time:(double )time ) 
   NSLog(@"seekToTime");
   [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
     AliyunPlayerView *playerView = (AliyunPlayerView *) viewRegistry[reactTag];
-    [self.playerView.aliPlayer seekToTime:time];
+    [self.playerView.aliPlayer seekToTime:time seekMode:AVP_SEEKMODE_INACCURATE];
   }];
 }
 

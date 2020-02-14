@@ -1,27 +1,28 @@
-import { NativeModules, DeviceEventEmitter } from "react-native";
+import { NativeModules, NativeEventEmitter } from "react-native";
 const DownloaderModule = NativeModules.AliyunVodDownloadModule;
 export class AliyunVodDownloader {
     constructor() {
         this.initialized = false;
+        this.mEventEmitter = new NativeEventEmitter(DownloaderModule);
     }
     setAuthRefreshHandler(handler) {
-        DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_UPDATE_AUTH, handler);
+        this.mEventEmitter.addListener(AliyunVodDownloader.EVENT_UPDATE_AUTH, handler);
         this.initialized = true;
     }
     setAuth(vidId, authStr) {
         DownloaderModule.setAuth(vidId, authStr);
     }
     onStart(handler) {
-        DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_START, handler);
+        this.mEventEmitter.addListener(AliyunVodDownloader.EVENT_START, handler);
     }
     onProgress(handler) {
-        DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_PROGRESS, handler);
+        this.mEventEmitter.addListener(AliyunVodDownloader.EVENT_PROGRESS, handler);
     }
     onComplete(handler) {
-        DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_COMPLETE, handler);
+        this.mEventEmitter.addListener(AliyunVodDownloader.EVENT_COMPLETE, handler);
     }
     onError(handler) {
-        DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_ERROR, handler);
+        this.mEventEmitter.addListener(AliyunVodDownloader.EVENT_ERROR, handler);
     }
     startAuthDownload(vidId, authStr, format, quality, encrypted) {
         if (!this.initialized) {

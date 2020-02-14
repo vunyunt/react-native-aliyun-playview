@@ -15,15 +15,17 @@
 
 @end
 
-@implementation AliyunPlayerView
+@implementation AliyunPlayerView {
+    UIView *mView;
+    AVPTrackInfo *mTrackInfo;
+    AVPMediaInfo *mMediaInfo;
+}
 
 - (void)dealloc {
   if (_aliPlayer) {
       // 销毁
-    [_aliPlayer releasePlayer];
-    if (_timer) {
-      [self clearTimer];
-    }
+      [self.aliPlayer destroy];
+    [_aliPlayer destroy];
     _aliPlayer = nil;
   }
 }
@@ -35,11 +37,11 @@
 }
 
 - (void)setMuteMode:(BOOL)muteMode {
-    self.aliPlayer.muteMode = muteMode;
+    self.aliPlayer.muted = muteMode;
 }
 
 - (void)setQuality:(NSInteger)quality {
-    self.aliPlayer.quality = quality;
+//    self.aliPlayer.quality = quality;
 }
 
 - (void)setVolume:(float)volume {
@@ -47,11 +49,11 @@
 }
 
 - (void)setBrightness:(float)brightness {
-    self.aliPlayer.brightness = brightness;
+//    self.aliPlayer.brightness = brightness;
 }
 
 - (void)setupAliPlayer {
-  [self addSubview:self.aliPlayer.playerView];
+    self.aliPlayer.playerView = self;
   
   NSString *type = [_prepareAsyncParams objectForKey:@"type"];
   if ([type isEqualToString:@"vidSts"]) {
@@ -59,12 +61,33 @@
     NSString *accessKeyId = [_prepareAsyncParams objectForKey:@"accessKeyId"];
     NSString *accessKeySecret = [_prepareAsyncParams objectForKey:@"accessKeySecret"];
     NSString *securityToken = [_prepareAsyncParams objectForKey:@"securityToken"];
-    [self.aliPlayer prepareWithVid:vid accessKeyId:accessKeyId accessKeySecret:accessKeySecret securityToken:securityToken];
+
+    AVPVidStsSource *stsSrc = [[AVPVidStsSource alloc] init];
+    [stsSrc setVid:vid];
+      [stsSrc setAccessKeyId:accessKeyId];
+    [stsSrc setAccessKeySecret:accessKeySecret];
+    [stsSrc setSecurityToken:securityToken];
+      
+    [self.aliPlayer setStsSource:stsSrc];
   } else if ([type isEqualToString:@"url"]) {
       NSString *urlStr = [_prepareAsyncParams objectForKey:@"url"];
       NSURL *url = [NSURL URLWithString:urlStr];
-      [self.aliPlayer prepareWithURL:url];
+      
+      AVPUrlSource *urlSrc = [[AVPUrlSource alloc] init];
+      [urlSrc setPlayerUrl:url];
+      [self.aliPlayer setUrlSource:urlSrc];
+  } else if([type isEqualToString:@"vidAuth"]) {
+      NSString *vid = [_prepareAsyncParams objectForKey:@"vid"];
+      NSString *playAuth = [_prepareAsyncParams objectForKey:@"playAuth"];
+      AVPVidAuthSource *vidAuthSrc = [[AVPVidAuthSource alloc] init];
+      [vidAuthSrc setVid:vid];
+      [vidAuthSrc setPlayAuth:playAuth];
+      [vidAuthSrc setRegion:@"cn-shanghai"];
+      
+      [self.aliPlayer setAuthSource:vidAuthSrc];
   }
+    
+    [self.aliPlayer prepare];
 }
 
 - (void) layoutSubviews {
@@ -75,68 +98,63 @@
 }
 
 #pragma mark - 播放器初始化
--(AliyunVodPlayer *)aliPlayer{
+-(AliPlayer *)aliPlayer{
   if (!_aliPlayer) {
-    _aliPlayer = [[AliyunVodPlayer alloc] init];
+    _aliPlayer = [[AliPlayer alloc] init];
     _aliPlayer.delegate = self;
-    _aliPlayer.quality= 0;
-    _aliPlayer.circlePlay = YES;
-    _aliPlayer.autoPlay = NO;
-    [_aliPlayer setDisplayMode: AliyunVodPlayerDisplayModeFit];
+    _aliPlayer.autoPlay = YES;
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docDir = [pathArray objectAtIndex:0];
-    //maxsize: MB, maxDuration: second
-    [_aliPlayer setPlayingCache:YES saveDir:docDir maxSize:3000 maxDuration:100000];
   }
   return _aliPlayer;
 }
 
 #pragma mark - AliyunVodPlayerDelegate
-- (void)vodPlayer:(AliyunVodPlayer *)vodPlayer onEventCallback:(AliyunVodPlayerEvent)event{
+- (void)vodPlayer:(AliPlayer *)vodPlayer onEventCallback:(AVPEventType)event{
   NSLog(@"onEventCallback: %ld", event);
   
   NSMutableDictionary *callbackExt = [NSMutableDictionary dictionary];
   //这里监控播放事件回调
   //主要事件如下：
   switch (event) {
-    case AliyunVodPlayerEventPrepareDone:
+    case AVPEventPrepareDone:
       //播放准备完成时触发
       [_aliPlayer start];
-      [_aliPlayer setCirclePlay:false];
+//      [_aliPlayer setCirclePlay:false];
       if (self.onGetAliyunMediaInfo) {
           NSMutableDictionary *info = [NSMutableDictionary dictionary];
-          
-          AliyunVodPlayerVideo *video = [vodPlayer getAliyunMediaInfo];
-          info[@"videoId"] = video.videoId;
-          info[@"title"] = video.title;
-          info[@"duration"] = @(video.duration);
-          info[@"coverUrl"] = video.coverUrl;
-          info[@"videoQuality"] = @(video.videoQuality);
-          info[@"videoDefinition"] = video.videoDefinition;
-          info[@"allSupportQualitys"] = video.allSupportQualitys;
+          mTrackInfo = [self.aliPlayer getCurrentTrack:AVPTRACK_TYPE_VIDEO];
+          mMediaInfo = [vodPlayer getMediaInfo];
+//          info[@"videoId"] = vidInfo.videoId;
+          info[@"title"] = mMediaInfo.title;
+          info[@"duration"] = @(mMediaInfo.duration);
+          info[@"coverUrl"] = mMediaInfo.coverURL;
+//          info[@"videoQuality"] = @(video.videoQuality);
+//          info[@"videoDefinition"] = video.videoDefinition;
+//          info[@"allSupportQualitys"] = video.allSupportQualitys;
           self.onGetAliyunMediaInfo(info);
       }
       break;
-    case AliyunVodPlayerEventPlay:
+    case AVPEventAutoPlayStart:
       //暂停后恢复播放时触发
-      [self setupTimer];
+//      [self setupTimer];
       break;
-    case AliyunVodPlayerEventFirstFrame:
+    case AVPEventFirstRenderedStart:
       //播放视频首帧显示出来时触发
-      [self setupTimer];
+//      [self setupTimer];
       break;
     case AliyunVodPlayerEventPause:
       //视频暂停时触发
-      [self clearTimer];
+//      [self clearTimer];
       break;
     case AliyunVodPlayerEventStop:
       //主动使用stop接口时触发
-      [self clearTimer];
+//      [self clearTimer];
       break;
     case AliyunVodPlayerEventFinish:
       //视频正常播放完成时触发
       NSLog(@"视频播放完毕");
-       [self clearTimer];
+//       [self clearTimer];
       break;
     case AliyunVodPlayerEventBeginLoading:
       //视频开始载入时触发
@@ -212,43 +230,14 @@
 - (void)onTimeExpiredErrorWithVodPlayer:(AliyunVodPlayer *)vodPlayer{
   //播放器鉴权数据过期回调，出现过期可重新prepare新的地址或进行UI上的错误提醒。
 }
-/*
- *功能：播放过程中鉴权即将过期时提供的回调消息（过期前一分钟回调）
- *参数：videoid：过期时播放的videoId
- *参数：quality：过期时播放的清晰度，playauth播放方式和STS播放方式有效。
- *参数：videoDefinition：过期时播放的清晰度，MPS播放方式时有效。
- *备注：使用方法参考高级播放器-点播。
- */
+
 - (void)vodPlayerPlaybackAddressExpiredWithVideoId:(NSString *)videoId quality:(AliyunVodPlayerVideoQuality)quality videoDefinition:(NSString*)videoDefinition{
   //鉴权有效期为2小时，在这个回调里面可以提前请求新的鉴权，stop上一次播放，prepare新的地址，seek到当前位置
 }
 
-#pragma mark - Timer
-- (void)setupTimer {
-  if (!_timer) {
-    WeakObj(self)
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-      if (selfWeak.aliPlayer) {
-        NSDictionary *callbackExt = @{
-                               @"currentTime": @(selfWeak.aliPlayer.currentTime),
-                               @"duration": @(selfWeak.aliPlayer.duration)
-                               };
-        if (selfWeak.onPlayingCallback) {
-          selfWeak.onPlayingCallback(callbackExt);
-        }
-        NSLog(@"Timer is keep running... %@", callbackExt);
-      }
-    }];
-    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
-  } else {
-    [self clearTimer];
-    [self setupTimer];
-  }
-}
-
-- (void)clearTimer {
-  [_timer invalidate];
-  _timer = nil;
+- (void)onCurrentPositionUpdate:(AliPlayer*)player position:(int64_t)position {
+    NSDictionary *eventParams = @{@"currentTime": [NSNumber numberWithLong:position], @"duration": [NSNumber numberWithLong:player.duration]};
+    self.onPlayingCallback(eventParams);
 }
 
 - (dispatch_queue_t)methodQueue

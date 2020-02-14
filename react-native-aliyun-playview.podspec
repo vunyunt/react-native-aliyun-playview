@@ -18,4 +18,5 @@ Pod::Spec.new do |s|
   s.dependency 'React'
   s.dependency 'VODUpload'
   s.dependency 'AliyunPlayer_iOS'
+  s.dependency 'AliPlayerSDK_iOS'
 end

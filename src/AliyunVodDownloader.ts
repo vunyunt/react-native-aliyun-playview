@@ -1,4 +1,4 @@
-import { NativeModules, DeviceEventEmitter } from "react-native";
+import { NativeModules, NativeEventEmitter } from "react-native";
 
 const DownloaderModule = NativeModules.AliyunVodDownloadModule;
 
@@ -32,6 +32,7 @@ export class AliyunVodDownloader {
   public static EVENT_ERROR = "AliyunVod.Downloader.Error";
 
   private initialized = false;
+  private mEventEmitter = new NativeEventEmitter(DownloaderModule);
 
   constructor() {}
 
@@ -44,7 +45,7 @@ export class AliyunVodDownloader {
       encrypt: boolean;
     }) => void
   ) {
-    DeviceEventEmitter.addListener(
+    this.mEventEmitter.addListener(
       AliyunVodDownloader.EVENT_UPDATE_AUTH,
       handler
     );
@@ -56,15 +57,15 @@ export class AliyunVodDownloader {
   }
 
   public onStart(handler: (args: IAliyunMediaInfoList) => void) {
-    DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_START, handler);
+    this.mEventEmitter.addListener(AliyunVodDownloader.EVENT_START, handler);
   }
 
   public onProgress(handler: (args: IAliyunDownloadProgress) => void) {
-    DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_PROGRESS, handler);
+    this.mEventEmitter.addListener(AliyunVodDownloader.EVENT_PROGRESS, handler);
   }
 
   public onComplete(handler: (args: IAliyunMediaInfoList) => void) {
-    DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_COMPLETE, handler);
+    this.mEventEmitter.addListener(AliyunVodDownloader.EVENT_COMPLETE, handler);
   }
 
   public onError(
@@ -75,7 +76,7 @@ export class AliyunVodDownloader {
       s2: string;
     }) => void
   ) {
-    DeviceEventEmitter.addListener(AliyunVodDownloader.EVENT_ERROR, handler);
+    this.mEventEmitter.addListener(AliyunVodDownloader.EVENT_ERROR, handler);
   }
 
   public startAuthDownload(
