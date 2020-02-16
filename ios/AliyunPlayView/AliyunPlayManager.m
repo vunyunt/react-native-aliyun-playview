@@ -95,7 +95,7 @@ RCT_EXPORT_METHOD(seekToTime :(nonnull NSNumber *)reactTag time:(double )time ) 
   NSLog(@"seekToTime");
   [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
     AliyunPlayerView *playerView = (AliyunPlayerView *) viewRegistry[reactTag];
-    [self.playerView.aliPlayer seekToTime:time seekMode:AVP_SEEKMODE_INACCURATE];
+    [self.playerView.aliPlayer seekToTime:time seekMode:AVP_SEEKMODE_ACCURATE];
   }];
 }
 
