@@ -304,7 +304,8 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
                 break;
             case VIDEO_STOP:
                 if (mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.stop();
+                    mAliyunVodPlayer.seekTo(0);
+                    mAliyunVodPlayer.pause();
                 }
                 break;
             case VIDEO_SEEKTOTIME:

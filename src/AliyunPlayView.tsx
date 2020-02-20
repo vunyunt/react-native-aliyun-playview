@@ -32,8 +32,8 @@ export interface IAliyunVideoEvent {
 
 export interface IAliyunPlayingEvent {
   nativeEvent: {
-    currentTime: number;
-    duration: number;
+    currentTime: string;
+    duration: string;
   };
 }
 
