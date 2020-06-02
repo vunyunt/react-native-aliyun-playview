@@ -10,7 +10,6 @@
     "experimentalDecorators": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "watch": true,
     "allowSyntheticDefaultImports": true
   },
   "include": [

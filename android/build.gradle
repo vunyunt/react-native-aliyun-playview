@@ -39,12 +39,14 @@ repositories {
     jcenter()
     google()
     maven { url 'https://maven.aliyun.com/repository/releases' }
+    maven { url "https://maven.aliyun.com/nexus/content/repositories/releases" }
     flatDir { dirs 'libs' }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.aliyun.dpa:oss-android-sdk:+'
+    implementation 'com.aliyun.video.android:upload:1.6.0'
     //阿里云点播服务
     // implementation 'com.aliyun.sdk.android:AliyunPlayer:4.5.0-full'
     // implementation 'com.alivc.conan:AlivcConan:0.9.5'
