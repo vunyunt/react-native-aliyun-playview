@@ -113,3 +113,4 @@ export default class AliyunPlayView extends Component<Props> {
 }
 
 export * from "./AliyunVodDownloader";
+export * from "./AliyunVodUploader";
