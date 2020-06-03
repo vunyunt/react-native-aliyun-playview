@@ -43,4 +43,5 @@ export default class AliyunPlayView extends Component {
     }
 }
 export * from "./AliyunVodDownloader";
+export * from "./AliyunVodUploader";
 //# sourceMappingURL=AliyunPlayView.js.map
