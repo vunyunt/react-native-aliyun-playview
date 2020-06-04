@@ -39,6 +39,7 @@ export class AliyunVodUploader {
         });
       }
     );
+    this.initialized = true;
   }
 
   public setAuth(auth: string) {

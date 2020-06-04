@@ -13,6 +13,7 @@ let AliyunVodUploader = (() => {
                     vidId: this.mVidId,
                 });
             });
+            this.initialized = true;
         }
         setAuth(auth) {
             UploadModule.setAuth(auth);
