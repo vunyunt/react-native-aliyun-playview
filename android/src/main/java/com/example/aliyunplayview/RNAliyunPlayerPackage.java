@@ -2,6 +2,8 @@
 package com.example.aliyunplayview;
 
 
+import android.util.Log;
+
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
@@ -14,10 +16,15 @@ import java.util.List;
 public class RNAliyunPlayerPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(new RNAliyunPlayerModule(reactContext),
+        List l = Arrays.<NativeModule>asList(new RNAliyunPlayerModule(reactContext),
                 new AliyunVodUploadModule(reactContext),
                 new AliyunVodDownloadModule(reactContext));
+//
+//        for (int i = 0; i < l.size(); ++i) {
+//            Log.d("ReactNative", l.get(i).toString());
+//        }
 
+        return l;
     }
 
     // Deprecated from RN 0.47

@@ -10,6 +10,7 @@ import com.alibaba.sdk.android.vod.upload.model.VodInfo;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
@@ -39,6 +40,7 @@ public class AliyunVodUploadModule extends ReactContextBaseJavaModule {
         mContext = context;
     }
 
+    @Override
     public String getName() {
         return "AliyunVodUploadModule";
     }
@@ -65,6 +67,7 @@ public class AliyunVodUploadModule extends ReactContextBaseJavaModule {
         map.putString("status", info.getStatus().name());
     }
 
+    @ReactMethod
     public void setAuth(String auth) {
         this.mAuthLock.lock();
         this.mAuth = auth;
@@ -73,6 +76,7 @@ public class AliyunVodUploadModule extends ReactContextBaseJavaModule {
         this.mAuthLock.unlock();
     }
 
+    @ReactMethod
     public void startAuthUpload(String address, String auth) {
         this.mAuth = auth;
         this.mAddress = address;
