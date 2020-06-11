@@ -8,8 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e9eb3219-4eeb-4ed4-aa6c-f4f11e1336f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodUploadModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/AliyunVodUploadModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/RNAliyunPlayerPackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/aliyunplayview/RNAliyunPlayerPackage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +64,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../jx-frontend-rn/android" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />

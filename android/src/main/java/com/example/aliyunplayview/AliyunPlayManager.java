@@ -138,10 +138,15 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
             case "vidAuth":
                 String playAuthVid = options.getString("vid");
                 String playAuthStr = options.getString("playAuth");
+                String qualityStr = options.getString(("quality"));
 
                 AliyunPlayAuth.AliyunPlayAuthBuilder playAuthBuilder = new AliyunPlayAuth.AliyunPlayAuthBuilder();
                 playAuthBuilder.setPlayAuth(playAuthStr);
                 playAuthBuilder.setVid(playAuthVid);
+
+                if(qualityStr != null) {
+                    playAuthBuilder.setQuality(qualityStr);
+                }
 
                 if(mAliyunVodPlayer != null) {
                     mAliyunVodPlayer.prepareAsync(playAuthBuilder.build());
