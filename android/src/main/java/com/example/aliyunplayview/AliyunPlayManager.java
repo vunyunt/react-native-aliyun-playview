@@ -1,18 +1,17 @@
 package com.example.aliyunplayview;
 
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import com.alivc.player.VcPlayerLog;
-import com.aliyun.vodplayer.media.AliyunLocalSource;
-import com.aliyun.vodplayer.media.AliyunPlayAuth;
-import com.aliyun.vodplayer.media.AliyunVidSource;
-import com.aliyun.vodplayer.media.AliyunVidSts;
-import com.aliyun.vodplayer.media.AliyunVodPlayer;
-import com.aliyun.vodplayer.media.IAliyunVodPlayer;
-import com.example.aliyunplayview.AliyunPlayerView;
+
+import com.aliyun.player.AliPlayer;
+import com.aliyun.player.AliPlayerFactory;
+import com.aliyun.player.IPlayer;
+import com.aliyun.player.bean.ErrorInfo;
+import com.aliyun.player.bean.InfoBean;
+import com.aliyun.player.source.UrlSource;
+import com.aliyun.player.source.VidAuth;
+import com.aliyun.player.source.VidSts;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -22,7 +21,6 @@ import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
-import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nullable;
@@ -33,14 +31,33 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
     private static final String PLAYING_CALLBACK = "onPlayingCallback";
     private static final String EVENT_CALLBACK = "onEventCallback";
 
+    enum EAliVidEventType {
+        PrepareDone(0),
+        Play(1),
+        FirstFrame(2),
+        Pause(3),
+        Stop(4),
+        Finish(5),
+        BeginLoading(6),
+        EndLoading(7),
+        SeekDone(8),
+        Error(9);
+
+        private int val;
+        EAliVidEventType(int i) {
+            val = i;
+        }
+
+        public int getVal() {return val;}
+    }
+
+
     //视频画面
     private SurfaceView mSurfaceView;
     // 组件view
     private AliyunPlayerView mAliyunPlayerView;
     //播放器
-    private AliyunVodPlayer mAliyunVodPlayer;
-    // 播放进度计时器
-    private ProgressUpdateTimer mProgressUpdateTimer;
+    private AliPlayer mAliPlayer;
     // 事件发送者
     private RCTEventEmitter mEventEmitter;
     private static final int VIDEO_PAUSE = 1;
@@ -59,8 +76,8 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
     protected AliyunPlayerView createViewInstance(ThemedReactContext context) {
         Log.e("TAG", "组件创建了");
         //reactContext = context;
-        mProgressUpdateTimer = null;
-        mProgressUpdateTimer = new ProgressUpdateTimer(AliyunPlayManager.this);
+        this.mAliPlayer = AliPlayerFactory.createAliPlayer(context);
+
         mEventEmitter = context.getJSModule(RCTEventEmitter.class);
         AliyunPlayerView view = new AliyunPlayerView(context);
         mAliyunPlayerView = view;
@@ -69,30 +86,26 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
         view.addView(mSurfaceView);
         SurfaceHolder holder = mSurfaceView.getHolder();
 
-        mAliyunVodPlayer = new AliyunVodPlayer(context);
-        mAliyunVodPlayer.setDisplay(holder);
-        mAliyunVodPlayer.setVideoScalingMode(IAliyunVodPlayer.VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT);
-
-
+//        mAliyunVodPlayer = new AliyunVodPlayer(context);
+//        mAliyunVodPlayer.setDisplay(holder);
+//        mAliyunVodPlayer.setVideoScalingMode(IAliyunVodPlayer.VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT);
 
         //增加surfaceView的监听
         holder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
-                VcPlayerLog.d(TAG, " surfaceCreated = surfaceHolder = " + surfaceHolder);
-                mAliyunVodPlayer.setDisplay(surfaceHolder);
+                mAliPlayer.setDisplay(surfaceHolder);
             }
 
             @Override
             public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width,
                                        int height) {
-                VcPlayerLog.d(TAG, " surfaceChanged surfaceHolder = " + surfaceHolder + " ,  width = " + width + " , height = " + height);
-                mAliyunVodPlayer.surfaceChanged();
+                mAliPlayer.redraw();
             }
 
             @Override
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-                VcPlayerLog.d(TAG, " surfaceDestroyed = surfaceHolder = " + surfaceHolder);
+                mAliPlayer.setDisplay(null);
             }
         });
 
@@ -115,41 +128,45 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
                 String accessKeySecret = options.getString("accessKeySecret");
                 String securityToken = options.getString("securityToken");
 
-                AliyunVidSts mVidSts = new AliyunVidSts();
-                mVidSts.setVid(vid);
-                mVidSts.setAcId(accessKeyId);
-                mVidSts.setAkSceret(accessKeySecret);
-                mVidSts.setSecurityToken(securityToken);
+                VidSts vidSts = new VidSts();
+                vidSts.setVid(vid);
+                vidSts.setAccessKeyId(accessKeyId);
+                vidSts.setAccessKeySecret(accessKeySecret);
+                vidSts.setSecurityToken(securityToken);
 
-                if (mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.prepareAsync(mVidSts);
+                if (mAliPlayer != null) {
+                    mAliPlayer.setDataSource(vidSts);
+                    mAliPlayer.prepare();
                 }
                 break;
             case "url":
                 String url = options.getString("url");
 
-                AliyunLocalSource.AliyunLocalSourceBuilder asb = new AliyunLocalSource.AliyunLocalSourceBuilder();
-                asb.setSource(url);
+                UrlSource urlSource = new UrlSource();
+                urlSource.setUri(url);
 
-                if(mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.prepareAsync(asb.build());
+                if(mAliPlayer != null) {
+                    mAliPlayer.setDataSource(urlSource);
+                    mAliPlayer.prepare();
                 }
                 break;
             case "vidAuth":
                 String playAuthVid = options.getString("vid");
                 String playAuthStr = options.getString("playAuth");
                 String qualityStr = options.getString(("quality"));
+//                Boolean forceQuality = options.getBoolean("forceQuality");
+//                if(forceQuality == null) { forceQuality = false; }
 
-                AliyunPlayAuth.AliyunPlayAuthBuilder playAuthBuilder = new AliyunPlayAuth.AliyunPlayAuthBuilder();
-                playAuthBuilder.setPlayAuth(playAuthStr);
-                playAuthBuilder.setVid(playAuthVid);
-
+                VidAuth vidAuth = new VidAuth();
+                vidAuth.setPlayAuth(playAuthStr);
+                vidAuth.setVid(playAuthVid);
                 if(qualityStr != null) {
-                    playAuthBuilder.setQuality(qualityStr);
+                    vidAuth.setQuality(qualityStr, false);
                 }
 
-                if(mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.prepareAsync(playAuthBuilder.build());
+                if(mAliPlayer != null) {
+                    mAliPlayer.setDataSource(vidAuth);
+                    mAliPlayer.prepare();
                 }
                 break;
             default:
@@ -171,116 +188,70 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
      * @param view
      */
     private void onListener(final ThemedReactContext reactContext, AliyunPlayerView view) {
-
-        Log.e(TAG, "版本号" + AliyunVodPlayer.getSDKVersion());
-
-        mAliyunVodPlayer.setOnPreparedListener(new IAliyunVodPlayer.OnPreparedListener() {
+        this.mAliPlayer.setOnPreparedListener(new IPlayer.OnPreparedListener() {
             @Override
             public void onPrepared() {
-                Log.e(TAG, "onPrepared1" + mAliyunVodPlayer.getPlayerState().ordinal());
-                mAliyunVodPlayer.start();
+                mAliPlayer.start();
                 //准备完成触发
 
                 // TODO：待优化的 listener 处理，应该新建个独立文件处理？
                 WritableMap body = Arguments.createMap();
-                body.putInt("event", mAliyunVodPlayer.getPlayerState().ordinal());
-                mEventEmitter.receiveEvent(mAliyunPlayerView.getId(), EVENT_CALLBACK, body);
+                body.putInt("event", EAliVidEventType.PrepareDone.getVal());
+                mEventEmitter.receiveEvent(mAliPlayer.hashCode(), EVENT_CALLBACK, body);
             }
         });
 
         // 第一帧显示
-        mAliyunVodPlayer.setOnFirstFrameStartListener(new IAliyunVodPlayer.OnFirstFrameStartListener() {
+        this.mAliPlayer.setOnRenderingStartListener(new IPlayer.OnRenderingStartListener() {
             @Override
-            public void onFirstFrameStart() {
-                Log.e(TAG, "onPrepared2" + mAliyunVodPlayer.getPlayerState().ordinal());
+            public void onRenderingStart() {
                 // 开始启动更新进度的定时器
-                startProgressUpdateTimer();
                 // TODO：待优化的 listener 处理，应该新建个独立文件处理？
                 WritableMap body = Arguments.createMap();
-                body.putInt("event", mAliyunVodPlayer.getPlayerState().ordinal());
-                mEventEmitter.receiveEvent(mAliyunPlayerView.getId(), EVENT_CALLBACK, body);
+                body.putInt("event", EAliVidEventType.FirstFrame.getVal());
+                mEventEmitter.receiveEvent(mAliPlayer.hashCode(), EVENT_CALLBACK, body);
             }
         });
 
-        mAliyunVodPlayer.setOnErrorListener(new IAliyunVodPlayer.OnErrorListener() {
+        mAliPlayer.setOnErrorListener(new IPlayer.OnErrorListener() {
             @Override
-            public void onError(int errorCode, int errorEvent, String errorMsg) {
-                android.util.Log.d("ReactNative", "onError: " + errorMsg);
-                Log.e(TAG, "onError" + errorMsg);
-                // 停止定时器
-                stopProgressUpdateTimer();
+            public void onError(ErrorInfo errorInfo) {
+                android.util.Log.d("ReactNative", "onError: " + errorInfo.getMsg());
+                Log.e(TAG, "onError" + errorInfo.getMsg());
+
+                WritableMap body = Arguments.createMap();
+                body.putString("msg", errorInfo.getMsg());
+                body.putString("extra", errorInfo.getExtra());
+                body.putInt("code", errorInfo.getCode().getValue());
+                body.putInt("event", EAliVidEventType.Error.getVal());
+                mEventEmitter.receiveEvent(mAliPlayer.hashCode(), EVENT_CALLBACK, body);
             }
         });
 
-        mAliyunVodPlayer.setOnCompletionListener(new IAliyunVodPlayer.OnCompletionListener() {
+        mAliPlayer.setOnCompletionListener(new IPlayer.OnCompletionListener() {
             @Override
             public void onCompletion() {
-                stopProgressUpdateTimer();
-                mProgressUpdateTimer = null;
-                mProgressUpdateTimer = new ProgressUpdateTimer(AliyunPlayManager.this);
                 WritableMap body = Arguments.createMap();
-                body.putInt("event", mAliyunVodPlayer.getPlayerState().ordinal());
-                Log.e("TAG", "视频播放完成" + mAliyunVodPlayer.getPlayerState().ordinal());
+                body.putInt("event", EAliVidEventType.Finish.getVal());
                 mEventEmitter.receiveEvent(mAliyunPlayerView.getId(), EVENT_CALLBACK, body);
             }
         });
 
-
-    }
-
-    /**
-     * 开始播放进度计时器
-     */
-    private void startProgressUpdateTimer() {
-        if (mProgressUpdateTimer != null) {
-            mProgressUpdateTimer.removeMessages(0);
-            mProgressUpdateTimer.sendEmptyMessageDelayed(0, 1000);
-        }
-    }
-
-    /**
-     * 停止播放进度计时器
-     */
-    private void stopProgressUpdateTimer() {
-        if (mProgressUpdateTimer != null) {
-            mProgressUpdateTimer.removeMessages(0);
-        }
-    }
-
-    /**
-     * 更新播放进度
-     */
-    private void handlePlayingMessage(Message message) {
-        if (mAliyunVodPlayer != null) {
-            long currentTime = mAliyunVodPlayer.getCurrentPosition();
-            long duration = mAliyunVodPlayer.getDuration();
-            WritableMap body = Arguments.createMap();
-            body.putString("currentTime", currentTime + "");
-            body.putString("duration", duration + "");
-            mEventEmitter.receiveEvent(mAliyunPlayerView.getId(), PLAYING_CALLBACK, body);
-        }
-
-        startProgressUpdateTimer();
-    }
-
-    /**
-     * 播放进度计时器
-     */
-    private static class ProgressUpdateTimer extends Handler {
-        private WeakReference<AliyunPlayManager> managerWeakReference;
-
-        ProgressUpdateTimer(AliyunPlayManager playManager) {
-            managerWeakReference = new WeakReference<AliyunPlayManager>(playManager);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            AliyunPlayManager playManager = managerWeakReference.get();
-            if (playManager != null) {
-                playManager.handlePlayingMessage(msg);
+        mAliPlayer.setOnInfoListener((new IPlayer.OnInfoListener() {
+            @Override
+            public void onInfo(InfoBean infoBean) {
+                switch (infoBean.getCode()){
+                    case CurrentPosition:
+                        long currentTime = infoBean.getExtraValue();
+                        long duration = mAliPlayer.getDuration();
+                        WritableMap body = Arguments.createMap();
+                        body.putString("currentTime", currentTime + "");
+                        body.putString("duration", duration + "");
+                        mEventEmitter.receiveEvent(mAliyunPlayerView.getId(), PLAYING_CALLBACK, body);
+                        break;
+                }
             }
-            super.handleMessage(msg);
-        }
+        }));
     }
 
     @Nullable
@@ -292,36 +263,33 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
         return builder.build();
     }
 
-
     @Override
     public void receiveCommand(AliyunPlayerView root, int commandId, @Nullable ReadableArray args) {
         switch (commandId) {
             case VIDEO_PAUSE:
-                if (mAliyunVodPlayer != null &&
-                        mAliyunVodPlayer.isPlaying()) {
-                    mAliyunVodPlayer.pause();
+                if (mAliPlayer != null) {
+                    mAliPlayer.pause();
                 }
                 break;
             case VIDEO_RESUME:
-                if (mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.resume();
+                if (mAliPlayer != null) {
+                    mAliPlayer.start();
                 }
                 break;
             case VIDEO_STOP:
-                if (mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.seekTo(0);
-                    mAliyunVodPlayer.pause();
+                if (mAliPlayer != null) {
+                    mAliPlayer.stop();
                 }
                 break;
             case VIDEO_SEEKTOTIME:
-                if (mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.seekTo(args.getInt(0));
+                if (mAliPlayer != null) {
+                    mAliPlayer.seekTo(args.getInt(0));
                 }
                 break;
             case VIDEO_REPLAY:
                 Log.e("TAG", "重新播放");
-                if (mAliyunVodPlayer != null) {
-                    mAliyunVodPlayer.replay();
+                if (mAliPlayer != null) {
+                    mAliPlayer.reset();
                 }
                 break;
         }
@@ -355,10 +323,9 @@ public class AliyunPlayManager extends SimpleViewManager<AliyunPlayerView> {
     @Override
     public void onDropViewInstance(AliyunPlayerView view) {
         Log.e("TAG", "组件销毁了");
-        mProgressUpdateTimer = null;
-        mAliyunVodPlayer.stop();
-        mAliyunVodPlayer.release();
-        mAliyunVodPlayer = null;
+        mAliPlayer.stop();
+        mAliPlayer.release();
+        mAliPlayer = null;
         view.destroyDrawingCache();
         super.onDropViewInstance(view);
     }

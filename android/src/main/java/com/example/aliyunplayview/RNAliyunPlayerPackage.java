@@ -16,9 +16,7 @@ import java.util.List;
 public class RNAliyunPlayerPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        List l = Arrays.<NativeModule>asList(new RNAliyunPlayerModule(reactContext),
-                new AliyunVodUploadModule(reactContext),
-                new AliyunVodDownloadModule(reactContext));
+        List l = Arrays.<NativeModule>asList(new RNAliyunPlayerModule(reactContext));
 //
 //        for (int i = 0; i < l.size(); ++i) {
 //            Log.d("ReactNative", l.get(i).toString());

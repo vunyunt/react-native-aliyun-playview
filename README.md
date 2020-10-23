@@ -6,15 +6,13 @@
 
 react-native link react-native-aliyun-playview链接Android和iOS原生模块
 #### Android端额外配置
-在项目app build.gradle做以下配置,然后clean build运行
-```java
-repositories {
-    mavenCentral()
-    flatDir {
-        dirs 'libs','../../node_modules/react-native-aliyun-playview/android/libs' //this way we can find the .aar file in libs folder
-    }
-}
+若使用 Proguard，在 android/app/proguard-rules.pro 内添加规则
 ```
+-keep class com.alivc.conan.** { *; }
+-keep class com.aliyun.** { *; }
+-keep class com.cicada.** { *; }
+```
+
 #### iOS端额外配置
 直接进入ios目录执行pod install然后关闭Xcode重新打开项目完成所有依赖.
 

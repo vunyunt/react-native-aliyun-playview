@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f179e52-89fa-4eb4-bd0c-b91367184bd3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/android/src/main/java/com/example/aliyunplayview/AliyunVodUploadModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/example/aliyunplayview/AliyunPlayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/example/aliyunplayview/AliyunPlayManager.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,20 +47,27 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectId" id="1cfsUvIqO5q6fqAVnn1xCKSj1Dg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/android" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jx-frontend-rn/android" />
     <property name="node.js.detected.package.prettier" value="true" />
     <property name="node.js.path.for.package.prettier" value="project" />
     <property name="node.js.selected.package.prettier" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -74,17 +80,31 @@
       <command value="gradle sync" />
     </option>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="RunManager">
+    <configuration name="/run/media/vun/C/vun/workspace/jx/react-native-aliyun-playview [sync]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="sync" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <item itemvalue="Gradle./run/media/vun/C/vun/workspace/jx/react-native-aliyun-playview [sync]" />
       </list>
-    </option>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -121,10 +141,50 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="555" y="215" width="800" height="684" key="#Project_Structure" timestamp="1603359420605">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="215" width="800" height="684" key="#Project_Structure/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1603359420605" />
+    <state x="820" y="455" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603359477607">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="820" y="455" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1603359477607" />
+    <state width="1895" height="274" key="GridCell.Tab.0.bottom" timestamp="1603359478744">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1895" height="274" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1603359478744" />
+    <state width="1895" height="274" key="GridCell.Tab.0.center" timestamp="1603359478743">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1895" height="274" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1603359478743" />
+    <state width="1895" height="274" key="GridCell.Tab.0.left" timestamp="1603359478743">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1895" height="274" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1603359478743" />
+    <state width="1895" height="274" key="GridCell.Tab.0.right" timestamp="1603359478743">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1895" height="274" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1603359478743" />
+    <state x="441" y="188" width="1037" height="737" key="SettingsEditor" timestamp="1603359466269">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="441" y="188" width="1037" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1603359466269" />
+    <state x="100" y="127" width="1720" height="853" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1603359058185">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="100" y="127" width="1720" height="853" key="com.android.tools.idea.avdmanager.AvdListDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1603359058185" />
+    <state x="624" y="252" width="672" height="678" key="run.anything.popup" timestamp="1603359081419">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="624" y="252" width="672" height="678" key="run.anything.popup/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1603359081419" />
   </component>
 </project>
